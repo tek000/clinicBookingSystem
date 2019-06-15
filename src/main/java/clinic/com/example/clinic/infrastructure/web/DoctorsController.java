@@ -16,7 +16,7 @@ public class DoctorsController {
 
     private final DoctorFinder doctorFinder;
 
-    @GetMapping("/specialization")
+    @GetMapping("/{specialization}")
     ModelAndView getDoctors(@PathVariable String specialization) {
         ModelAndView modelAndView = new ModelAndView("doctors.html");
         modelAndView.addObject("specialization", specialization);
