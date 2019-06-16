@@ -1,14 +1,16 @@
 package clinic.com.example.clinic.infrastructure.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
+
+@Setter
+@Getter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class DoctorDto {
     private Long id;
     private String firstName;
-    private String secondName;
+    private String lastName;
+    private String specialization;
 }

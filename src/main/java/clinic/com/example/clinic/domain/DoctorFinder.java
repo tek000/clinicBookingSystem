@@ -17,8 +17,11 @@ public class DoctorFinder {
 
     public List<DoctorDto> findBySpecialization(String specialization) {
         return doctorRepository.findBySpecialization(specialization).stream()
-                .map(Doctor::toDo)
+                .map(Doctor::toDto)
                 .collect(Collectors.toList());
     }
 
+    public DoctorDto findById(Long id){
+        return doctorRepository.findById(id).map(Doctor::toDto).orElseThrow(()->new IllegalStateException("Nie ma takiego doktora"));
+    }
 }
