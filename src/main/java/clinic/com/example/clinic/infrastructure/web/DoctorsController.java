@@ -26,7 +26,6 @@ public class DoctorsController {
         return modelAndView;
     }
 
-
     @GetMapping("/create")
     ModelAndView createDoctorView() {
         ModelAndView modelAndView = new ModelAndView("createDoctor.html");

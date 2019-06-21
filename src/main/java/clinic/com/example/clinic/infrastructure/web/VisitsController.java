@@ -1,14 +1,11 @@
 package clinic.com.example.clinic.infrastructure.web;
 
-
 import clinic.com.example.clinic.domain.*;
-import clinic.com.example.clinic.infrastructure.dto.DoctorDto;
 import clinic.com.example.clinic.infrastructure.dto.VisitDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
 import java.util.Date;
 
 @Controller

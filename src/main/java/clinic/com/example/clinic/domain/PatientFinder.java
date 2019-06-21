@@ -1,15 +1,10 @@
 package clinic.com.example.clinic.domain;
 
-
-import clinic.com.example.clinic.infrastructure.dto.DoctorDto;
 import clinic.com.example.clinic.infrastructure.dto.PatientDto;
-import clinic.com.example.clinic.infrastructure.entity.Doctor;
 import clinic.com.example.clinic.infrastructure.entity.Patient;
-import clinic.com.example.clinic.infrastructure.repository.DoctorRepository;
 import clinic.com.example.clinic.infrastructure.repository.PatientRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -18,15 +13,12 @@ import java.util.stream.Collectors;
 public class PatientFinder {
     private final PatientRepository patientRepository;
 
-
-
     public PatientDto findById(Long id) {
         return patientRepository
                 .findById(id)
                 .map(Patient::toDto)
                 .orElseThrow(() -> new IllegalStateException("Nie ma takiego pacjenta"));
     }
-
 
     public List<PatientDto> findAll() {
         return patientRepository.findAll()

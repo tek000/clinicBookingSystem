@@ -1,6 +1,5 @@
 package clinic.com.example.clinic.infrastructure.dto;
 
-import clinic.com.example.clinic.infrastructure.entity.VisitId;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 

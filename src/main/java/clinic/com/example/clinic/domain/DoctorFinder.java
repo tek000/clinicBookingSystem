@@ -1,10 +1,7 @@
 package clinic.com.example.clinic.domain;
 
-
 import clinic.com.example.clinic.infrastructure.dto.DoctorDto;
-import clinic.com.example.clinic.infrastructure.dto.VisitDto;
 import clinic.com.example.clinic.infrastructure.entity.Doctor;
-import clinic.com.example.clinic.infrastructure.entity.Visit;
 import clinic.com.example.clinic.infrastructure.repository.DoctorRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -29,8 +26,6 @@ public class DoctorFinder {
                 .map(Doctor::toDto)
                 .orElseThrow(() -> new IllegalStateException("Nie ma takiego doktora"));
     }
-
-
 
     public List<DoctorDto> findAll() {
         return doctorRepository.findAll()

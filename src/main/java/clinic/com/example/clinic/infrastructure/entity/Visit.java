@@ -5,7 +5,6 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
-
 import javax.persistence.*;
 import java.util.Date;
 import java.util.Objects;
@@ -17,20 +16,18 @@ import java.util.Objects;
 @Table(name = "visit")
 public class Visit {
 
-//    @Id
-//    private VisitId id;
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "doctorId")
-//    @MapsId("doctorId")
+
     private Doctor doctor;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "patientId")
-//    @MapsId("patientId")
+
     private Patient patient;
 
     @Column(name = "specialization")
@@ -81,20 +78,4 @@ public class Visit {
 
     }
 
-
-    @Override
-    public boolean equals(Object o) {
-
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass())
-            return false;
-        Visit that = (Visit) o;
-        return Objects.equals(doctor, that.doctor) &&
-                Objects.equals(patient, that.patient);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(doctor, patient);
-    }
 }

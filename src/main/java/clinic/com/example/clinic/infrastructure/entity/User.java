@@ -1,6 +1,5 @@
 package clinic.com.example.clinic.infrastructure.entity;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

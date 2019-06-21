@@ -28,17 +28,10 @@
             </option>
         </select>
 
-
-        <!--<div class="col-xs-2">-->
-            <!--<input type="date" class="form-control" th:field="*{visitDate}" placeholder="Data wizyty"/>-->
-        <!--</div>-->
-        <!--<label class="col-xs-2">Data wizyty</label>-->
-
-
         <div class="col-xs-2">
             <label class="col-xs-2">Data wizyty</label>
             <input type="date" class="form-control" id="visitDate" th:field="*{visitDate}"
-                   th:value="${#calendars.format(visitDate,'yyyy-MM-dd')}" />
+                   th:value="${#calendars.format(visitDate,'yyyy-MM-dd')}"/>
 
         </div>
 

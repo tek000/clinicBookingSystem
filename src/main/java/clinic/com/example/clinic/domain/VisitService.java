@@ -1,8 +1,10 @@
 package clinic.com.example.clinic.domain;
 
-import clinic.com.example.clinic.infrastructure.dto.DoctorDto;
 import clinic.com.example.clinic.infrastructure.dto.VisitDto;
-import clinic.com.example.clinic.infrastructure.entity.*;
+import clinic.com.example.clinic.infrastructure.entity.Doctor;
+import clinic.com.example.clinic.infrastructure.entity.Patient;
+import clinic.com.example.clinic.infrastructure.entity.Visit;
+import clinic.com.example.clinic.infrastructure.entity.VisitStatus;
 import clinic.com.example.clinic.infrastructure.repository.DoctorRepository;
 import clinic.com.example.clinic.infrastructure.repository.PatientRepository;
 import clinic.com.example.clinic.infrastructure.repository.VisitRepository;
@@ -11,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
-import java.time.LocalDate;
 import java.util.Date;
 
 @Service
@@ -31,7 +32,6 @@ public class VisitService {
         Doctor foundDoctor = doctorRepository
                 .findById(dto.getDoctorId())
                 .orElseThrow(() -> new IllegalStateException("Nie ma takiego doktora"));
-
 
         Patient foundPtient = patientRepository
                 .findById(dto.getPatientId())
@@ -68,6 +68,5 @@ public class VisitService {
         //future feature
         return 15;
     }
-
 
 }

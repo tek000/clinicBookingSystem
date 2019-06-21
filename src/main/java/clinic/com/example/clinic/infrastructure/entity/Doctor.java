@@ -29,7 +29,6 @@ public class Doctor {
     @OneToMany
     private Set<DoctorAvailability> doctorAvailabilities;
 
-
     public DoctorDto toDto() {
         return DoctorDto.builder().id(id)
                 .firstName(firstName)

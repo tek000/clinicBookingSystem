@@ -1,7 +1,5 @@
 package clinic.com.example.clinic.infrastructure.entity;
 
-
-import clinic.com.example.clinic.infrastructure.dto.DoctorDto;
 import clinic.com.example.clinic.infrastructure.dto.PatientDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,7 +15,6 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Table(name = "patient")
 public class Patient {
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -40,9 +37,7 @@ public class Patient {
                 .build();
     }
 
-
     public Integer getAge() {
-
         //future feature
         return 25;
     }

@@ -2,7 +2,6 @@ package clinic.com.example.clinic.infrastructure.dto;
 
 import lombok.*;
 
-
 @Setter
 @Getter
 @Builder

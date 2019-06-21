@@ -15,11 +15,11 @@ import javax.persistence.*;
 @Table(name = "user_roles")
 public class UserRole {
 
-@Id
-@GeneratedValue(strategy = GenerationType.SEQUENCE)
-private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private Long id;
 
-@Column (unique = true)
-private String role;
+    @Column(unique = true)
+    private String role;
 
 }
