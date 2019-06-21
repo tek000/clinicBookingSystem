@@ -1,6 +1,7 @@
 package clinic.com.example.clinic.infrastructure.entity;
 
 import clinic.com.example.clinic.infrastructure.dto.VisitDto;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -8,6 +9,7 @@ import javax.persistence.*;
 import java.util.Date;
 import java.util.Objects;
 
+@Builder
 @Getter
 @NoArgsConstructor
 @Entity(name = "Visit")
@@ -25,6 +27,9 @@ public class Visit {
     @MapsId("patientId")
     private Patient patient;
 
+    @Column(name = "specialization")
+    private String specialization;
+
     @Column(name = "created_on")
     private Date createdOn = new Date();
 
@@ -41,11 +46,12 @@ public class Visit {
     private VisitStatus status;
 
 
-    public Visit(VisitId id, Doctor doctor, Patient patient, Date createdOn,
-                 Date visitDate, Integer plannedLength, Long userId, VisitStatus status) {
+    public Visit(VisitId id, Doctor doctor, Patient patient, String specialization,
+                 Date createdOn, Date visitDate, Integer plannedLength, Long userId, VisitStatus status) {
         this.id = id;
         this.doctor = doctor;
         this.patient = patient;
+        this.specialization = specialization;
         this.createdOn = createdOn;
         this.visitDate = visitDate;
         this.plannedLength = plannedLength;
@@ -53,14 +59,13 @@ public class Visit {
         this.status = status;
     }
 
-
     public VisitDto toDto() {
         return VisitDto.builder()
                 .id(id)
                 .doctorId(doctor.getId())
                 .doctorFirstName(doctor.getFirstName())
                 .doctorLastName(doctor.getLastName())
-                .doctorSpecialization(doctor.getSpecialization())
+                .specialization(doctor.getSpecialization())
                 .patientFirstName(patient.getFirstName())
                 .patientLastName(patient.getLastName())
                 .patientAge(patient.getAge())

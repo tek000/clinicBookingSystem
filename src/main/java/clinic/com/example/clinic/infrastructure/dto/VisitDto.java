@@ -16,7 +16,7 @@ public class VisitDto {
     private Long doctorId;
     private String doctorFirstName;
     private String doctorLastName;
-    private String doctorSpecialization;
+    private String specialization;
     private Long patientId;
     private String patientFirstName;
     private String patientLastName;

@@ -3,6 +3,7 @@ package clinic.com.example.clinic.infrastructure.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
@@ -11,6 +12,7 @@ import java.util.Objects;
 
 @NoArgsConstructor
 @AllArgsConstructor
+@Setter
 @Embeddable
 public class VisitId implements Serializable {
 

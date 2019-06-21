@@ -9,8 +9,8 @@
 
 
 <div class="form-group blu-margin">
-    <form th:action="@{/visits/get/doctor}" th:object="${DoctorDto}" method="POST">
-        <select th:field="*{id}">
+    <form th:action="@{/visits/get}" th:object="${VisitDto}" method="POST">
+        <select th:field="*{doctorId}">
             <option value="0">Wybierz lekarza</option>
             <option
                     th:each="doctor : ${doctors}"
@@ -52,7 +52,7 @@
     <tr align="right" th:each="visit : ${visits}">
         <td th:text="${visitStat.count}">1</td>
         <td><span th:text="${visit.visitDate}"/></td>
-        <td><span th:text="${visit.doctorSpecialization}"/></td>
+        <td><span th:text="${visit.specialization}"/></td>
         <td><span th:text="${visit.doctorFirstName +' '+ visit.doctorLastName}"/></td>
         <td a><span th:text="${visit.patientFirstName +' '+ visit.patientLastName}"/></td>
         <td><span th:text="${visit.patientAge}"/></td>
