@@ -4,6 +4,7 @@ import clinic.com.example.clinic.infrastructure.dto.VisitDto;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -16,15 +17,20 @@ import java.util.Objects;
 @Table(name = "visit")
 public class Visit {
 
+//    @Id
+//    private VisitId id;
     @Id
-    private VisitId id;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @MapsId("doctorId")
+    @JoinColumn(name = "doctorId")
+//    @MapsId("doctorId")
     private Doctor doctor;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @MapsId("patientId")
+    @JoinColumn(name = "patientId")
+//    @MapsId("patientId")
     private Patient patient;
 
     @Column(name = "specialization")
@@ -34,6 +40,7 @@ public class Visit {
     private Date createdOn = new Date();
 
     @Column(name = "visit_date")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date visitDate = new Date();
 
     @Column(name = "plan_length")
@@ -46,7 +53,7 @@ public class Visit {
     private VisitStatus status;
 
 
-    public Visit(VisitId id, Doctor doctor, Patient patient, String specialization,
+    public Visit(Long id, Doctor doctor, Patient patient, String specialization,
                  Date createdOn, Date visitDate, Integer plannedLength, Long userId, VisitStatus status) {
         this.id = id;
         this.doctor = doctor;

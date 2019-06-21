@@ -4,8 +4,10 @@ import clinic.com.example.clinic.infrastructure.dto.DoctorDto;
 import clinic.com.example.clinic.infrastructure.dto.VisitDto;
 import clinic.com.example.clinic.infrastructure.entity.*;
 import clinic.com.example.clinic.infrastructure.repository.DoctorRepository;
+import clinic.com.example.clinic.infrastructure.repository.PatientRepository;
 import clinic.com.example.clinic.infrastructure.repository.VisitRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
@@ -16,27 +18,29 @@ import java.util.Date;
 @RequiredArgsConstructor
 public class VisitService {
 
-    private final VisitRepository visitRepository;
+    @Autowired
+    private VisitRepository visitRepository;
+    @Autowired
+    private DoctorRepository doctorRepository;
+    @Autowired
+    private PatientRepository patientRepository;
 
     public void createOrUpdate(VisitDto dto) {
 
-        Doctor newDoctor = Doctor.builder()
-                .id(dto.getDoctorId())
-                .firstName(dto.getDoctorFirstName())
-                .lastName(dto.getDoctorLastName())
-                .specialization(dto.getSpecialization())
-                .build();
 
-        Patient newPatient = Patient.builder()
-                .id(dto.getPatientId())
-                .firstName(dto.getPatientFirstName())
-                .lastName(dto.getPatientLastName())
-                .build();
+        Doctor foundDoctor = doctorRepository
+                .findById(dto.getDoctorId())
+                .orElseThrow(() -> new IllegalStateException("Nie ma takiego doktora"));
+
+
+        Patient foundPtient = patientRepository
+                .findById(dto.getPatientId())
+                .orElseThrow(() -> new IllegalStateException("Nie ma takiego doktora"));
 
         Visit visit = Visit.builder()
                 .id(dto.getId())
-                .doctor(newDoctor)
-                .patient(newPatient)
+                .doctor(foundDoctor)
+                .patient(foundPtient)
                 .plannedLength(getStandardVisitLengthForSpecialization(dto.getSpecialization()))
                 .visitDate(dto.getVisitDate())
                 .status(VisitStatus.PLAN)

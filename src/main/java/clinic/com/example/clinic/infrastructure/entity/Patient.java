@@ -1,6 +1,8 @@
 package clinic.com.example.clinic.infrastructure.entity;
 
 
+import clinic.com.example.clinic.infrastructure.dto.DoctorDto;
+import clinic.com.example.clinic.infrastructure.dto.PatientDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -30,8 +32,18 @@ public class Patient {
     @Column(name = "pesel")
     private Long pesel;
 
+    public PatientDto toDto() {
+        return PatientDto.builder().id(id)
+                .firstName(firstName)
+                .lastName(lastName)
+                .age(getAge())
+                .build();
+    }
+
 
     public Integer getAge() {
+
+        //future feature
         return 25;
     }
 }

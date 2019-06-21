@@ -3,3 +3,17 @@ INSERT INTO users (id, login, password) VALUES (1, 'user', '$2a$10$iNWL3dCpWChiB
 INSERT INTO users_roles (user_id, roles_id) VALUES (1, 1);
 
 
+INSERT INTO `visit` (`id`,`created_on`,`plan_length`,`specialization`,`status`,`created_by`,`visit_date`,`doctor_id`,`patient_id`) VALUES (1,'2019-05-28 00:00:00',15,'okulista',1,1,'2019-06-01 00:00:00',1,1);
+INSERT INTO `visit` (`id`,`created_on`,`plan_length`,`specialization`,`status`,`created_by`,`visit_date`,`doctor_id`,`patient_id`) VALUES (2,'2019-05-28 00:00:00',15,'okulista',1,1,'2019-06-01 00:00:00',1,2);
+INSERT INTO `visit` (`id`,`created_on`,`plan_length`,`specialization`,`status`,`created_by`,`visit_date`,`doctor_id`,`patient_id`) VALUES (3,'2019-05-28 00:00:00',15,'internista',1,1,'2019-06-01 00:00:00',2,1);
+INSERT INTO `visit` (`id`,`created_on`,`plan_length`,`specialization`,`status`,`created_by`,`visit_date`,`doctor_id`,`patient_id`) VALUES (4,'2019-05-28 00:00:00',15,'internista',1,1,'2019-06-01 00:00:00',2,2);
+
+INSERT INTO `patient` (`id`,`first_name`,`last_name`,`pesel`) VALUES (1,'Tomasz','Karolak',7744562115);
+INSERT INTO `patient` (`id`,`first_name`,`last_name`,`pesel`) VALUES (2,'Wojciech','Szczęsny',95124536554);
+INSERT INTO `patient` (`id`,`first_name`,`last_name`,`pesel`) VALUES (3,'Zbigniew','Boniek',88447525551);
+
+
+INSERT INTO `doctor` (`id`,`first_name`,`last_name`,`specialization`) VALUES (2,'Ryszard','Nawałka','internista');
+INSERT INTO `doctor` (`id`,`first_name`,`last_name`,`specialization`) VALUES (1,'Maciej','Zębaty','okulista');
+INSERT INTO `doctor` (`id`,`first_name`,`last_name`,`specialization`) VALUES (3,'Ryszard','Ochucki','okulista');
+INSERT INTO `doctor` (`id`,`first_name`,`last_name`,`specialization`) VALUES (4,'Karol','Witkowski','internista');

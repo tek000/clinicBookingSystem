@@ -11,9 +11,11 @@
 <ul>
     <li><a th:href="@{/doctor/get/okulista}">Okuliści</a></li>
     <li><a th:href="@{/doctor/get/internista}">Interniści</a></li>
-    <li><a th:href="@{/visits/get/all}">Wszystkie wizyty</a></li>
+    <li><a th:href="@{/visits/get/all}">Zarejestroane wizyty</a></li>
 </ul>
-
+<div>
+    <a th:href="@{/visits/create}">Zarejestruj wizytę</a>
+</div>
 <div sec:authorize="hasRole('USER')">
     <a th:href="@{/doctor/create}">Utworz nowego doktora</a>
 </div>
@@ -34,9 +36,7 @@
 </div>
 
 
-<div>
-    <a th:href="@{/visits/create}">Zarejestruj wizytę</a>
-</div>
+
 
 </div>
 </body>

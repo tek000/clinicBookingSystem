@@ -9,6 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.Date;
+
 @Controller
 @RequestMapping("/visits")
 @RequiredArgsConstructor
@@ -16,6 +18,7 @@ public class VisitsController {
 
     private final VisitFinder visitFinder;
     private final DoctorFinder doctorFinder;
+    private final PatientFinder patientFinder;
     private final SpecializationFinder specializationFinder;
     private final VisitService visitService;
 
@@ -54,14 +57,22 @@ public class VisitsController {
     @GetMapping("/create")
     ModelAndView createVisitView() {
         ModelAndView modelAndView = new ModelAndView("createVisit.html");
+        modelAndView.addObject("doctors", doctorFinder.findAll());
+        modelAndView.addObject("patients", patientFinder.findAll());
         modelAndView.addObject("VisitDto", new VisitDto());
         return modelAndView;
     }
 
     @PostMapping("/create")
     String createVisit(@ModelAttribute VisitDto visitDto) {
+        ModelAndView modelAndView = new ModelAndView("createVisit.html");
+        modelAndView.addObject("doctors", doctorFinder.findAll());
+        modelAndView.addObject("patients", patientFinder.findAll());
+        modelAndView.addObject("date", new Date());
+        visitDto.setSpecialization(doctorFinder.findById(visitDto.getDoctorId()).getSpecialization());
+
         visitService.createOrUpdate(visitDto);
-        return "redirect:/";
+        return "redirect:/visits/get/all";
     }
 
 

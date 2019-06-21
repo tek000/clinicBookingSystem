@@ -30,6 +30,8 @@ public class DoctorFinder {
                 .orElseThrow(() -> new IllegalStateException("Nie ma takiego doktora"));
     }
 
+
+
     public List<DoctorDto> findAll() {
         return doctorRepository.findAll()
                 .stream().map(Doctor::toDto)

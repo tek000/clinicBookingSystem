@@ -2,6 +2,7 @@ package clinic.com.example.clinic.infrastructure.dto;
 
 import clinic.com.example.clinic.infrastructure.entity.VisitId;
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -12,7 +13,7 @@ import java.util.Date;
 @AllArgsConstructor
 public class VisitDto {
 
-    private VisitId id;
+    private Long id;
     private Long doctorId;
     private String doctorFirstName;
     private String doctorLastName;
@@ -21,5 +22,6 @@ public class VisitDto {
     private String patientFirstName;
     private String patientLastName;
     private Integer patientAge;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date visitDate;
 }

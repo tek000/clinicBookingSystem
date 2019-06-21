@@ -6,18 +6,49 @@
 </head>
 <body>
 <h1>Rejestracja wizyt</h1>
-<form  th:action="@{/visits/create}" method="POST" th:object="${VisitDto}">
-    <table>
 
-        <tr><td></td><td><input type="hidden" id="id" name="id" th:value="${VisitDto.id}"/></td></tr>
-        <tr><td>Imie lekarza:</td><td><input type="text" id="firstName" name="firstName" th:value="${VisitDto.doctorFirstName}"/></td></tr>
-        <tr><td>Nazwisko lekarza:</td><td><input type="text" id="lastName" name="lastName" th:value="${VisitDto.doctorLastName}"/></td></tr>
-        <tr><td>Specializacja lekarza:</td><td><input type="text" id="specialization" name="specialization" th:value="${VisitDto.specialization}"/></td></tr>
+<div class="form-group blu-margin">
+    <form th:action="@{/visits/create}" th:object="${VisitDto}" method="POST">
+        <select th:field="*{doctorId}">
+            <option value="0">Wybierz lekarza</option>
+            <option
+                    th:each="doctor : ${doctors}"
+                    th:value="${doctor.id}"
+                    th:text="${doctor.firstName +' '+ doctor.lastName +' '+ doctor.specialization}"
+            >
+            </option>
+        </select>
+        <select th:field="*{patientId}">
+            <option value="--">Wybierz pacjenta</option>
+            <option
+                    th:each="patient : ${patients}"
+                    th:value="${patient.id}"
+                    th:text="${patient.firstName +' '+ patient.lastName +' '+ patient.age +'l.'}"
+            >
+            </option>
+        </select>
 
-        <tr><td></td><td> <button type="submit">Zatwierdź</button></td></tr>
-    </table>
 
-</form>
+        <!--<div class="col-xs-2">-->
+            <!--<input type="date" class="form-control" th:field="*{visitDate}" placeholder="Data wizyty"/>-->
+        <!--</div>-->
+        <!--<label class="col-xs-2">Data wizyty</label>-->
+
+
+        <div class="col-xs-2">
+            <label class="col-xs-2">Data wizyty</label>
+            <input type="date" class="form-control" id="visitDate" th:field="*{visitDate}"
+                   th:value="${#calendars.format(visitDate,'yyyy-MM-dd')}" />
+
+        </div>
+
+        <input type="submit" value="Zatwierdź"/>
+    </form>
+</div>
+
+<div>
+    <a th:href="@{/}">Strona główna</a>
+</div>
 
 
 </body>
