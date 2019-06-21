@@ -31,4 +31,7 @@ public class Patient {
     private Long pesel;
 
 
+    public Integer getAge() {
+        return 25;
+    }
 }

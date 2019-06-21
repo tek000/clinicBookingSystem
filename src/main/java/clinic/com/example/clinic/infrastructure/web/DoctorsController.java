@@ -5,6 +5,7 @@ import clinic.com.example.clinic.domain.DoctorFinder;
 import clinic.com.example.clinic.domain.DoctorService;
 import clinic.com.example.clinic.infrastructure.dto.DoctorDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -35,7 +36,7 @@ public class DoctorsController {
 
     @PostMapping("/create")
     String createDoctor(@ModelAttribute DoctorDto doctorDto) {
-        doctorService.create(doctorDto);
+        doctorService.createOrUpdate(doctorDto);
         return "redirect:/";
     }
 
@@ -45,6 +46,7 @@ public class DoctorsController {
         return "redirect:/";
     }
 
+    @PostAuthorize("hasRole('USER')")
     @GetMapping("/edit")
     ModelAndView editDoctor(@RequestParam Long id) {
         ModelAndView modelAndView = new ModelAndView("createDoctor.html");

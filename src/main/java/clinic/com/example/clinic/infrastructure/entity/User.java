@@ -7,26 +7,26 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.util.Set;
 
 @Builder
-@Entity
-@Getter
-@AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "patient")
-public class Visits {
+@AllArgsConstructor
+@Getter
+@Entity
+@Table(name = "users")
+
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
-    @Column(name = "date")
-    private LocalDate date;
+    @Column(unique = true)
+    private String login;
+    private String password;
 
-    @Column(name = "doctor_id")
-    private Long doctor_id;
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Set<UserRole> roles;
 
-    @Column(name = "patient_id")
-    private Long patient_id;
 }
