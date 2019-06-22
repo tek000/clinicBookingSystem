@@ -7,7 +7,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Builder
 @Entity
@@ -20,21 +19,26 @@ public class Patient {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
+
     @Column(name = "first_name")
     private String firstName;
+
     @Column(name = "last_name")
     private String lastName;
+
     @Column(name = "pesel")
     private Long pesel;
-
-    @OneToMany
-    private Set<DoctorAvailability> doctorAvailabilities;
 
     public PatientDto toDto() {
         return PatientDto.builder().id(id)
                 .firstName(firstName)
                 .lastName(lastName)
-                .pesel(pesel).build();
+                .age(getAge())
+                .build();
     }
 
+    public Integer getAge() {
+        //future feature
+        return 25;
+    }
 }

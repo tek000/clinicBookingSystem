@@ -5,6 +5,7 @@ import clinic.com.example.clinic.domain.DoctorFinder;
 import clinic.com.example.clinic.domain.DoctorService;
 import clinic.com.example.clinic.infrastructure.dto.DoctorDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -25,7 +26,6 @@ public class DoctorsController {
         return modelAndView;
     }
 
-
     @GetMapping("/create")
     ModelAndView createDoctorView() {
         ModelAndView modelAndView = new ModelAndView("createDoctor.html");
@@ -35,16 +35,19 @@ public class DoctorsController {
 
     @PostMapping("/create")
     String createDoctor(@ModelAttribute DoctorDto doctorDto) {
-        doctorService.create(doctorDto);
-        return "redirect:/";
+        doctorService.createOrUpdate(doctorDto);
+        String specialization = doctorDto.getSpecialization();
+        return "redirect:/doctor/get/"+specialization;
     }
 
     @GetMapping("/delete")
     String deleteDoctor(@RequestParam Long id) {
+        String specialization = doctorFinder.findById(id).getSpecialization();
         doctorService.delete(id);
-        return "redirect:/";
+        return "redirect:/doctor/get/"+specialization;
     }
 
+    @PostAuthorize("hasRole('USER')")
     @GetMapping("/edit")
     ModelAndView editDoctor(@RequestParam Long id) {
         ModelAndView modelAndView = new ModelAndView("createDoctor.html");

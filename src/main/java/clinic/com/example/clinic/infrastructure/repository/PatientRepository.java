@@ -7,5 +7,6 @@ import java.util.List;
 
 public interface PatientRepository extends JpaRepository<Patient, Long> {
 
+    List<Patient> findById(String id);
     List<Patient> findByPesel(Long pesel);
 }

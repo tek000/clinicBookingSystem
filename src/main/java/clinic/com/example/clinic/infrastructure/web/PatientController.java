@@ -1,6 +1,5 @@
 package clinic.com.example.clinic.infrastructure.web;
 
-
 import clinic.com.example.clinic.domain.PatientFinder;
 import clinic.com.example.clinic.domain.PatientService;
 import clinic.com.example.clinic.infrastructure.dto.PatientDto;
@@ -16,6 +15,14 @@ public class PatientController {
 
     private final PatientFinder patientFinder;
     private final PatientService patientService;
+
+    @GetMapping("/get/all")
+    ModelAndView getPatients() {
+        ModelAndView modelAndView = new ModelAndView("patients.html");
+        modelAndView.addObject("patients", patientFinder.findAll());
+        return modelAndView;
+    }
+
 
     @GetMapping("/get/{pesel}")
     ModelAndView getPatients(@PathVariable Long pesel) {
@@ -36,13 +43,13 @@ public class PatientController {
     @PostMapping("/create")
     String createPatient(@ModelAttribute PatientDto patientDto) {
         patientService.create(patientDto);
-        return "redirect:/";
+        return "redirect:/patient/get/all";
     }
 
     @GetMapping("/delete")
     String deletePatient(@RequestParam Long id) {
         patientService.delete(id);
-        return "redirect:/";
+        return "redirect:/patient/get/all";
     }
 
     @GetMapping("/edit")
