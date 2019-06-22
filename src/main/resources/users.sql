@@ -3,10 +3,10 @@ INSERT INTO users (id, login, password) VALUES (1, 'user', '$2a$10$iNWL3dCpWChiB
 INSERT INTO users_roles (user_id, roles_id) VALUES (1, 1);
 
 
-INSERT INTO `visit` (`id`,`created_on`,`plan_length`,`specialization`,`status`,`created_by`,`visit_date`,`doctor_id`,`patient_id`) VALUES (1,'2019-05-28 00:00:00',15,'okulista',1,1,'2019-06-01 00:00:00',1,1);
-INSERT INTO `visit` (`id`,`created_on`,`plan_length`,`specialization`,`status`,`created_by`,`visit_date`,`doctor_id`,`patient_id`) VALUES (2,'2019-05-28 00:00:00',15,'okulista',1,1,'2019-06-01 00:00:00',1,2);
-INSERT INTO `visit` (`id`,`created_on`,`plan_length`,`specialization`,`status`,`created_by`,`visit_date`,`doctor_id`,`patient_id`) VALUES (3,'2019-05-28 00:00:00',15,'internista',1,1,'2019-06-01 00:00:00',2,1);
-INSERT INTO `visit` (`id`,`created_on`,`plan_length`,`specialization`,`status`,`created_by`,`visit_date`,`doctor_id`,`patient_id`) VALUES (4,'2019-05-28 00:00:00',15,'internista',1,1,'2019-06-01 00:00:00',2,2);
+INSERT INTO `visit` (`id`,`created_on`,`plan_length`,`specialization`,`status`,`created_by`,`visit_date`,`doctor_id`,`patient_id`) VALUES (10,'2019-05-28 00:00:00',15,'okulista',1,1,'2019-06-01 00:00:00',1,1);
+INSERT INTO `visit` (`id`,`created_on`,`plan_length`,`specialization`,`status`,`created_by`,`visit_date`,`doctor_id`,`patient_id`) VALUES (11,'2019-05-28 00:00:00',15,'okulista',1,1,'2019-06-01 00:00:00',1,2);
+INSERT INTO `visit` (`id`,`created_on`,`plan_length`,`specialization`,`status`,`created_by`,`visit_date`,`doctor_id`,`patient_id`) VALUES (12,'2019-05-28 00:00:00',15,'internista',1,1,'2019-06-01 00:00:00',2,1);
+INSERT INTO `visit` (`id`,`created_on`,`plan_length`,`specialization`,`status`,`created_by`,`visit_date`,`doctor_id`,`patient_id`) VALUES (13,'2019-05-28 00:00:00',15,'internista',1,1,'2019-06-01 00:00:00',2,2);
 INSERT INTO `visit` (`id`,`created_on`,`plan_length`,`specialization`,`status`,`created_by`,`visit_date`,`doctor_id`,`patient_id`) VALUES (21,'2019-06-21 16:23:43',15,'internista',0,1,'2018-12-31 23:00:00',2,1);
 INSERT INTO `visit` (`id`,`created_on`,`plan_length`,`specialization`,`status`,`created_by`,`visit_date`,`doctor_id`,`patient_id`) VALUES (25,'2019-06-21 16:28:29',15,'dentysta',0,1,'2018-12-31 23:00:00',24,2);
 INSERT INTO `visit` (`id`,`created_on`,`plan_length`,`specialization`,`status`,`created_by`,`visit_date`,`doctor_id`,`patient_id`) VALUES (23,'2019-06-21 16:26:09',15,'okulista',0,1,'2010-12-31 23:00:00',3,2);

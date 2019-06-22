@@ -20,24 +20,21 @@ public class Patient {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
-
     @Column(name = "first_name")
     private String firstName;
-
     @Column(name = "last_name")
     private String lastName;
-
-    @Column(name = "pesel")
     private Long pesel;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "patient",cascade = CascadeType.REMOVE)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "patient", cascade = CascadeType.REMOVE)
 //    @JoinColumn(name = "visitId")
-    List<Visit> visits;
+            List<Visit> visits;
 
     public PatientDto toDto() {
         return PatientDto.builder().id(id)
                 .firstName(firstName)
                 .lastName(lastName)
+                .pesel(pesel)
                 .age(getAge())
                 .build();
     }
