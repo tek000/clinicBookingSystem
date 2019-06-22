@@ -36,13 +36,15 @@ public class DoctorsController {
     @PostMapping("/create")
     String createDoctor(@ModelAttribute DoctorDto doctorDto) {
         doctorService.createOrUpdate(doctorDto);
-        return "redirect:/";
+        String specialization = doctorDto.getSpecialization();
+        return "redirect:/doctor/get/"+specialization;
     }
 
     @GetMapping("/delete")
     String deleteDoctor(@RequestParam Long id) {
+        String specialization = doctorFinder.findById(id).getSpecialization();
         doctorService.delete(id);
-        return "redirect:/";
+        return "redirect:/doctor/get/"+specialization;
     }
 
     @PostAuthorize("hasRole('USER')")

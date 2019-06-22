@@ -20,5 +20,5 @@ INSERT INTO `patient` (`id`,`first_name`,`last_name`,`pesel`) VALUES (3,'Zbignie
 
 INSERT INTO `doctor` (`id`,`first_name`,`last_name`,`specialization`) VALUES (2,'Ryszard','Nawałka','internista');
 INSERT INTO `doctor` (`id`,`first_name`,`last_name`,`specialization`) VALUES (1,'Maciej','Zębaty','okulista');
-INSERT INTO `doctor` (`id`,`first_name`,`last_name`,`specialization`) VALUES (3,'Ryszard','Ochucki','okulista');
+INSERT INTO `doctor` (`id`,`first_name`,`last_name`,`specialization`) VALUES (3,'Ryszard','Ochódzki','okulista');
 INSERT INTO `doctor` (`id`,`first_name`,`last_name`,`specialization`) VALUES (4,'Karol','Witkowski','internista');

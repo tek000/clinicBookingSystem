@@ -15,6 +15,13 @@ public class VisitFinder {
 
     private final VisitRepository visitRepository;
 
+    public VisitDto findById(Long visitId) {
+        return visitRepository.findById(visitId)
+                .map(Visit::toDto)
+                .orElseThrow(() -> new IllegalStateException("Nie ma takiej wizyty"));
+
+    }
+
     public List<VisitDto> findByDoctorId(Long doctorId) {
         return visitRepository.findByDoctorId(doctorId)
                 .stream()

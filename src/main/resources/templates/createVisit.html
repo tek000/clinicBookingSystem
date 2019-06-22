@@ -9,8 +9,10 @@
 
 <div class="form-group blu-margin">
     <form th:action="@{/visits/create}" th:object="${VisitDto}" method="POST">
+        <label>lekarz</label>
+        <input type="hidden" id="id" name="id" th:value="${VisitDto.id}"/>
         <select th:field="*{doctorId}">
-            <option value="0">Wybierz lekarza</option>
+            <option value="">Wybierz lekarza</option>
             <option
                     th:each="doctor : ${doctors}"
                     th:value="${doctor.id}"
@@ -18,8 +20,9 @@
             >
             </option>
         </select>
+        <label>pacjent</label>
         <select th:field="*{patientId}">
-            <option value="--">Wybierz pacjenta</option>
+            <option value="">Wybierz pacjenta</option>
             <option
                     th:each="patient : ${patients}"
                     th:value="${patient.id}"
@@ -28,8 +31,8 @@
             </option>
         </select>
 
-        <div class="col-xs-2">
-            <label class="col-xs-2">Data wizyty</label>
+        <div>
+            <label>Data wizyty</label>
             <input type="date" class="form-control" id="visitDate" th:field="*{visitDate}"
                    th:value="${#calendars.format(visitDate,'yyyy-MM-dd')}"/>
 

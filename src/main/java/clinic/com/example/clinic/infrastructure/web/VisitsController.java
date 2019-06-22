@@ -1,11 +1,14 @@
 package clinic.com.example.clinic.infrastructure.web;
 
 import clinic.com.example.clinic.domain.*;
+import clinic.com.example.clinic.infrastructure.dto.DoctorDto;
 import clinic.com.example.clinic.infrastructure.dto.VisitDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
 import java.util.Date;
 
 @Controller
@@ -72,5 +75,18 @@ public class VisitsController {
         return "redirect:/visits/get/all";
     }
 
+    @GetMapping("/delete")
+    String deleteVisit(@RequestParam Long id) {
+        visitService.delete(id);
+        return "redirect:/visits/get/all";
+    }
 
+    @GetMapping("/edit")
+    ModelAndView editVisit(@RequestParam Long id) {
+        ModelAndView modelAndView = new ModelAndView("createVisit.html");
+        modelAndView.addObject("doctors", doctorFinder.findAll());
+        modelAndView.addObject("patients", patientFinder.findAll());
+        modelAndView.addObject("VisitDto", visitFinder.findById(id));
+        return modelAndView;
+    }
 }
