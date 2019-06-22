@@ -70,7 +70,7 @@ public class Visit {
                 .specialization(doctor.getSpecialization())
                 .patientFirstName(patient.getFirstName())
                 .patientLastName(patient.getLastName())
-                .patientAge(patient.getAge())
+                .patientAge(patient.getAge(patient.getPesel().toString()))
                 .patientId(patient.getId())
                 .visitDate(visitDate).build();
 
