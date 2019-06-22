@@ -22,12 +22,10 @@ public class Visit {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "doctorId")
-
     private Doctor doctor;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "patientId")
-
     private Patient patient;
 
     @Column(name = "specialization")
