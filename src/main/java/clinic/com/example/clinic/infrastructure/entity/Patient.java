@@ -35,12 +35,12 @@ public class Patient {
                 .firstName(firstName)
                 .lastName(lastName)
                 .pesel(pesel)
-                .age(getAge())
+                .age(getAge(Long.toString(pesel)))
                 .build();
     }
 
-    public Integer getAge() {
-        //future feature
-        return 25;
+    public Integer getAge(String pesel) {
+        Pesel pesel1 = new Pesel(pesel);
+        return pesel1.getAge();
     }
 }
