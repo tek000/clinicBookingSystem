@@ -39,7 +39,7 @@ public class VisitFinder {
     }
 
     public List<VisitDto> findByDoctorIdAndSpecialization(Long doctorId, String specialization) {
-        return visitRepository.findByDoctorIdAndSpecialization(doctorId, specialization)
+        return visitRepository.findByCriteria(doctorId, specialization)
                 .stream()
                 .map(Visit::toDto)
                 .collect(Collectors.toList());
