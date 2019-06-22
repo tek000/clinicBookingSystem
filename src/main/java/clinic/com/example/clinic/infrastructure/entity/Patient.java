@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Builder
 @Entity
@@ -28,6 +29,10 @@ public class Patient {
 
     @Column(name = "pesel")
     private Long pesel;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "patient",cascade = CascadeType.REMOVE)
+//    @JoinColumn(name = "visitId")
+    List<Visit> visits;
 
     public PatientDto toDto() {
         return PatientDto.builder().id(id)
