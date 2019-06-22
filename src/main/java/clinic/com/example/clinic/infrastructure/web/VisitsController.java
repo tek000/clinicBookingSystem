@@ -4,6 +4,7 @@ import clinic.com.example.clinic.domain.*;
 import clinic.com.example.clinic.infrastructure.dto.DoctorDto;
 import clinic.com.example.clinic.infrastructure.dto.VisitDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.boot.web.servlet.server.Session;
 import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -70,7 +71,7 @@ public class VisitsController {
         modelAndView.addObject("patients", patientFinder.findAll());
         modelAndView.addObject("date", new Date());
         visitDto.setSpecialization(doctorFinder.findById(visitDto.getDoctorId()).getSpecialization());
-
+//        visitDto.setUserId();
         visitService.createOrUpdate(visitDto);
         return "redirect:/visits/get/all";
     }

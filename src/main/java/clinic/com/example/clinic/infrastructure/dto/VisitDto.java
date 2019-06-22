@@ -23,4 +23,5 @@ public class VisitDto {
     private Integer patientAge;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date visitDate;
+    private Long userId;
 }
