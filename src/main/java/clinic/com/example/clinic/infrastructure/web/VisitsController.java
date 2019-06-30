@@ -36,7 +36,7 @@ public class VisitsController {
 
     @GetMapping("/get/doctor")
     ModelAndView getDoctorsVisits(@RequestParam Long doctorId) {
-        LOGGER.info("Trying to get doctors by id");
+        LOGGER.info("Trying to get visits by id");
 
         ModelAndView modelAndView = new ModelAndView("visits.html");
         modelAndView.addObject("VisitDto", new VisitDto());
@@ -47,7 +47,9 @@ public class VisitsController {
 
     @GetMapping("/get/all")
     ModelAndView getAllVisits() {
-        LOGGER.info("Trying to get all doctors");
+
+        LOGGER.info("Trying to get all visits");
+
         ModelAndView modelAndView = new ModelAndView("visits.html");
         modelAndView.addObject("visits", visitFinder.findAll());
         modelAndView.addObject("VisitDto", new VisitDto());
@@ -101,7 +103,6 @@ public class VisitsController {
             return "redirect:/visits/create";
         } else {
 
-
             visitDto.setSpecialization(doctorFinder.findById(visitDto.getDoctorId()).getSpecialization());
             visitDto.setVisitDate(visitStartDate.atTime(visitTime));
             visitTime = visitTime.plusMinutes(visitDto.getPlannedLength());
@@ -131,7 +132,7 @@ public class VisitsController {
     @GetMapping("/edit")
     ModelAndView editVisit(@ModelAttribute VisitDto visitDto) {
 
-        LOGGER.info("Trying to edit doctors");
+        LOGGER.info("Trying to edit visit");
 
         visitDto = visitFinder.findById(visitDto.getId());
 

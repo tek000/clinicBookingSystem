@@ -3,7 +3,6 @@ package clinic.com.example.clinic.infrastructure.dto;
 import clinic.com.example.clinic.infrastructure.entity.UserRole;
 import lombok.*;
 
-import java.util.List;
 import java.util.Set;
 
 @Setter
@@ -20,7 +19,7 @@ public class UserDto {
     private Set<UserRole> roles;
 
 
-    public static UserDto NoPassword(UserDto userDto) {
+    public static UserDto noPasswordDto(UserDto userDto) {
         return UserDto.builder()
                 .id(userDto.id)
                 .login(userDto.login)

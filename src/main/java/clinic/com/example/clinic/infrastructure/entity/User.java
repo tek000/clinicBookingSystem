@@ -26,20 +26,14 @@ public class User {
     private String login;
     private String password;
 
-//    public void setPassword(String password) {
-//        this.password = hashPassword(password);
-//    }
-
     public static String hashPassword(String password) {
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
         String encryptedPass = bCryptPasswordEncoder.encode(password);
         return encryptedPass;
     }
 
-
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<UserRole> roles;
-
 
     public UserDto toDto() {
         return UserDto.builder()

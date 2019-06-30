@@ -47,23 +47,14 @@ public class VisitsControllerTest {
 
 
         mockMvc.perform(post("/visits/create", TEST_VISIT_ID)
-                .param("doctors",  "George")
-                .param("patients", "George")
-                .param("visitStatuses", "George")
+                .param("doctors",  "")
+                .param("patients", "")
+                .param("visitStatuses", "")
 
         )
                 .andExpect(status().is3xxRedirection())
-                .andExpect(view().name("redirect:/owners/{ownerId}"));
+                .andExpect(view().name("redirect:/createVisit"));
     }
 
-    @Test
-    public void testProcessNewVisitFormHasErrors() throws Exception {
-        mockMvc.perform(post("/owners/*/pets/{petId}/visits/new", TEST_VISIT_ID)
-                .param("name", "George")
-        )
-                .andExpect(model().attributeHasErrors("visit"))
-                .andExpect(status().isOk())
-                .andExpect(view().name("pets/createOrUpdateVisitForm"));
-    }
 
 }

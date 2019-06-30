@@ -33,7 +33,7 @@ public class DoctorService {
 
     }
 
-    @Scheduled (fixedDelay = 5000)
+    @Scheduled (fixedDelay = 50000)
     public void checkIfDoctorIsAvaliable() {
         LOGGER.info("method checkIfDoctorIsAvaliable - invoked");
     }

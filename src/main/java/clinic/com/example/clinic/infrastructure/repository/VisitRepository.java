@@ -16,4 +16,13 @@ public interface VisitRepository extends JpaRepository<Visit, Long>, CustomVisit
     @Query("select v from Visit v where (v.doctor.id = :doctorId or :doctorId is null) or " +
             "(v.doctor.specialization = :specialization or :specialization is null)")
     List<Visit> findByDoctorIdAndSpecialization(@Param("doctorId") Long doctorId,@Param("specialization") String specialization);
+
+
+
+    @Query("select v from Visit v where (v.doctor.id = :doctorId) and " +
+            "(v.status = :visitStatus or :visitStatus is null)")
+    List<Visit> findVisitsByDoctorId(@Param("doctorId") Long doctorId,@Param("visitStatus") String vistiStatus);
+
+
+
 }

@@ -15,7 +15,7 @@
         </encoder>
     </appender>
 
-    <logger name="clinic.com.example.clinic.domain" level="INFO">
+    <logger name="clinic.com.example.clinic" level="INFO">
         <appender-ref ref="FILE" />
     </logger>
 

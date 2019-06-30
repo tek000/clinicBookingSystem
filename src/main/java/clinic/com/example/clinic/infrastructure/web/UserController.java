@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.View;
 
 @Controller
 public class UserController {
@@ -71,7 +70,7 @@ public class UserController {
                 userDto.setPassword(passNew);
                 modelAndView.addObject("changePasswordMessage", successMessege);
                 userService.createOrUpdate(userDto);
-                modelAndView.addObject("userDto", UserDto.NoPassword(userDto));
+                modelAndView.addObject("userDto", UserDto.noPasswordDto(userDto));
                 return modelAndView;
             }
         } else {
