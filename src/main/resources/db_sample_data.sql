@@ -24,9 +24,12 @@ INSERT INTO `visit` (`id`,`created_on`,`plan_length`,`specialization`,`status`,`
 INSERT INTO `visit` (`id`,`created_on`,`plan_length`,`specialization`,`status`,`created_by`,`visit_date`,`doctor_id`,`patient_id`,`visit_end_date`) VALUES (36,'2019-06-29 22:37:09',15,'okulista',2,0,'2019-06-01 00:00:00',1,28,'2019-06-01 00:15:00');
 INSERT INTO `visit` (`id`,`created_on`,`plan_length`,`specialization`,`status`,`created_by`,`visit_date`,`doctor_id`,`patient_id`,`visit_end_date`) VALUES (37,'2019-06-29 22:38:35',15,'okulista',0,0,'2019-06-01 00:15:00',1,3,'2019-06-01 00:30:00');
 
-INSERT INTO `patient` (`id`,`first_name`,`last_name`,`pesel`) VALUES (1,'Tomasz','Karolak',7744562115);
-INSERT INTO `patient` (`id`,`first_name`,`last_name`,`pesel`) VALUES (2,'Wojciech','Szczęsny',95124536554);
-INSERT INTO `patient` (`id`,`first_name`,`last_name`,`pesel`) VALUES (3,'Zbigniew','Boniek',88447525551);
+INSERT INTO `` (`id`,`first_name`,`last_name`,`pesel`) VALUES (1,'Tomasz','Karolak',77112301112);
+INSERT INTO `` (`id`,`first_name`,`last_name`,`pesel`) VALUES (2,'Wojciech','Szczęsny',72121775839);
+INSERT INTO `` (`id`,`first_name`,`last_name`,`pesel`) VALUES (3,'Zbigniew','Boniek',280527668);
+INSERT INTO `` (`id`,`first_name`,`last_name`,`pesel`) VALUES (4,'Ryszard','Nawałka',89042586613);
+INSERT INTO `` (`id`,`first_name`,`last_name`,`pesel`) VALUES (28,'Ryszard','Nawałka',70112243776);
+INSERT INTO `` (`id`,`first_name`,`last_name`,`pesel`) VALUES (43,'Ryszard','Nawałka',3280759817);
 
 
 INSERT INTO `doctor` (`id`,`first_name`,`last_name`,`specialization`) VALUES (2,'Ryszard','Nawałka','internista');
