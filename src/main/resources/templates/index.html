@@ -6,7 +6,9 @@
 </head>
 <body>
 <h1>Welcome to e-clinic!</h1>
-<span th:text="${todayDate}"/>
+<a>Dziś jest:</a>
+<span th:text="${todayDate}"></span>
+
 
 <ul>
     <li><a th:href="@{/doctor/get/okulista}">Okuliści</a></li>
@@ -46,6 +48,10 @@
 </div>
 
 
+</div>
+
+<div>
+    <a th:href="@{|~/${#authentication.name}/edit|}" class="text-left">Ustawienia użytkownika</a>
 </div>
 </body>
 </html>

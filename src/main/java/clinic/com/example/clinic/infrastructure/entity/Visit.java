@@ -1,17 +1,20 @@
 package clinic.com.example.clinic.infrastructure.entity;
 
-import clinic.com.example.clinic.infrastructure.dto.VisitDto;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
-import java.util.Objects;
 
 @Builder
 @Getter
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity(name = "Visit")
 @Table(name = "visit")
 public class Visit {
@@ -32,11 +35,15 @@ public class Visit {
     private String specialization;
 
     @Column(name = "created_on")
-    private Date createdOn = new Date();
+    private LocalDateTime createdOn = LocalDateTime.now();
 
     @Column(name = "visit_date")
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date visitDate = new Date();
+    @DateTimeFormat(pattern = "yyyy-MM-dd-HH-mm")
+    private LocalDateTime visitDate = LocalDateTime.now();
+
+    @Column(name = "visit_end_date")
+    @DateTimeFormat(pattern = "yyyy-MM-dd-HH-mm")
+    private LocalDateTime endVisitDate = LocalDateTime.now();
 
     @Column(name = "plan_length")
     private Integer plannedLength;
@@ -48,32 +55,19 @@ public class Visit {
     private VisitStatus status;
 
 
-    public Visit(Long id, Doctor doctor, Patient patient, String specialization,
-                 Date createdOn, Date visitDate, Integer plannedLength, Long userId, VisitStatus status) {
-        this.id = id;
+    public Visit(Doctor doctor, Patient patient, String specialization, LocalDateTime createdOn,
+                 LocalDateTime visitDate, LocalDateTime endVisitDate, Integer plannedLength, Long userId,
+                 VisitStatus status) {
         this.doctor = doctor;
         this.patient = patient;
         this.specialization = specialization;
         this.createdOn = createdOn;
         this.visitDate = visitDate;
+        this.endVisitDate = endVisitDate;
         this.plannedLength = plannedLength;
         this.userId = userId;
         this.status = status;
     }
-
-    public VisitDto toDto() {
-        return VisitDto.builder()
-                .id(id)
-                .doctorId(doctor.getId())
-                .doctorFirstName(doctor.getFirstName())
-                .doctorLastName(doctor.getLastName())
-                .specialization(doctor.getSpecialization())
-                .patientFirstName(patient.getFirstName())
-                .patientLastName(patient.getLastName())
-                .patientAge(patient.getAge())
-                .patientId(patient.getId())
-                .visitDate(visitDate).build();
-
-    }
-
 }
+
+

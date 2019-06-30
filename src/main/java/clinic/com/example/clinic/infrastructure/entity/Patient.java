@@ -1,5 +1,6 @@
 package clinic.com.example.clinic.infrastructure.entity;
 
+import clinic.com.example.clinic.Utilities.Pesel;
 import clinic.com.example.clinic.infrastructure.dto.PatientDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -8,6 +9,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Builder
 @Entity
@@ -24,23 +26,24 @@ public class Patient {
     private String firstName;
     @Column(name = "last_name")
     private String lastName;
-    private Long pesel;
+    private String pesel;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "patient", cascade = CascadeType.REMOVE)
-//    @JoinColumn(name = "visitId")
-            List<Visit> visits;
+    Set<Visit> visits;
 
     public PatientDto toDto() {
         return PatientDto.builder().id(id)
                 .firstName(firstName)
                 .lastName(lastName)
                 .pesel(pesel)
-                .age(getAge())
+                .age(getAge(pesel))
                 .build();
     }
 
-    public Integer getAge() {
-        //future feature
-        return 25;
+    public Integer getAge(String peselString) {
+
+        Pesel pesel = new Pesel(peselString);
+        return pesel.getAge();
+
     }
 }

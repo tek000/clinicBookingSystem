@@ -7,13 +7,14 @@ import clinic.com.example.clinic.infrastructure.entity.Visit;
 import clinic.com.example.clinic.infrastructure.entity.VisitStatus;
 import clinic.com.example.clinic.infrastructure.repository.DoctorRepository;
 import clinic.com.example.clinic.infrastructure.repository.PatientRepository;
+import clinic.com.example.clinic.infrastructure.repository.UserRepository;
 import clinic.com.example.clinic.infrastructure.repository.VisitRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.Instant;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Service
 @RequiredArgsConstructor
@@ -25,9 +26,10 @@ public class VisitService {
     private DoctorRepository doctorRepository;
     @Autowired
     private PatientRepository patientRepository;
+    @Autowired
+    private UserRepository userRepository;
 
     public void createOrUpdate(VisitDto dto) {
-
 
         Doctor foundDoctor = doctorRepository
                 .findById(dto.getDoctorId())
@@ -41,12 +43,14 @@ public class VisitService {
                 .id(dto.getId())
                 .doctor(foundDoctor)
                 .patient(foundPtient)
-                .plannedLength(getStandardVisitLengthForSpecialization(dto.getSpecialization()))
+                .plannedLength(VisitService.getStandardVisitLengthForSpecialization(dto.getSpecialization()))
                 .visitDate(dto.getVisitDate())
+                .endVisitDate(dto.getEndVisitDate())
                 .status(VisitStatus.PLAN)
-                .userId(getCreationVisitUserId())
-                .createdOn(Date.from(Instant.now()))
+                .userId(userRepository.findByLogin(dto.getLogin()).map(user -> user.getId()).get())
+                .createdOn(LocalDateTime.now())
                 .specialization(dto.getSpecialization())
+                .status(dto.getStatus())
                 .build();
         visitRepository.save(visit);
 
@@ -54,16 +58,10 @@ public class VisitService {
 
     public void delete(Long visitId) {
         visitRepository.deleteById(visitId);
-
     }
 
-    private Long getCreationVisitUserId() {
 
-        //future feature
-        return 1L;
-    }
-
-    private Integer getStandardVisitLengthForSpecialization(String specialization) {
+    public static Integer getStandardVisitLengthForSpecialization(String specialization) {
 
         //future feature
         return 15;

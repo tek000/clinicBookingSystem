@@ -37,10 +37,8 @@
     <thead>
     <tr>
         <th>Nr</th>
-        <!--<th>Id</th>-->
-        <th>Status</th>
+        <th>Id</th>
         <th>Data wizyty</th>
-        <th>Godzina</th>
         <th>Specjalizacja</th>
         <th>Lekarz</th>
         <th>Pacjent</th>
@@ -54,13 +52,11 @@
     </tr>
     <tr align="right" th:each="visit : ${visits}">
         <td th:text="${visitStat.count}">1</td>
-        <!--<td><span th:text="${visit.id}"/></td>-->
-        <td><span th:text="${visit.statusDescription}"/></td>
-        <td><span th:text="${#temporals.format(visit.visitDate,'dd-MM-YYYY')}"/></td>
-        <td><span th:text="${#temporals.format(visit.visitDate,'HH:mm')}"/></td>
+        <td><span th:text="${visit.id}"/></td>
+        <td><span th:text="${visit.visitDate}"/></td>
         <td><span th:text="${visit.specialization}"/></td>
         <td><span th:text="${visit.doctorFirstName +' '+ visit.doctorLastName}"/></td>
-        <td><span th:text="${visit.patientFirstName +' '+ visit.patientLastName}"/></td>
+        <td a><span th:text="${visit.patientFirstName +' '+ visit.patientLastName}"/></td>
         <td><span th:text="${visit.patientAge}"/></td>
         <td><a th:href="@{../delete?id=} + ${visit.id}">Usuń</a></td>
         <td><a th:href="@{../edit?id=} + ${visit.id}">Edytuj</a></td>

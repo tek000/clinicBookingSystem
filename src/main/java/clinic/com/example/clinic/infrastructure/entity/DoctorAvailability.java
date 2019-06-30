@@ -14,3 +14,4 @@ public class DoctorAvailability {
     private Instant availableFrom;
     private Instant availableTo;
 }
+

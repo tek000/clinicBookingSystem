@@ -1,5 +1,6 @@
 package clinic.com.example.clinic.infrastructure.entity;
 
+import clinic.com.example.clinic.Utilities.Scheduler;
 import clinic.com.example.clinic.infrastructure.dto.DoctorDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -25,6 +26,9 @@ public class Doctor {
     @Column(name = "last_name")
     private String lastName;
     private String specialization;
+
+//    @OneToOne
+//    private Scheduler scheduler;
 
     @OneToMany
     private Set<DoctorAvailability> doctorAvailabilities;
