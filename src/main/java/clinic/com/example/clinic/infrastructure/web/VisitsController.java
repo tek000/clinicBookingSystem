@@ -131,11 +131,7 @@ public class VisitsController {
         modelAndView.addObject("patients", patientFinder.findAll());
         modelAndView.addObject("VisitDto", visitFinder.findById(visitDto.getId()));
 
-
-
         modelAndView.addObject("visitStatuses", Arrays.asList(VisitStatus.values()));
-
-
 
         LocalDate visitStartDate = visitDto.getVisitDate().toLocalDate();
         LocalTime visitTime = visitDto.getVisitDate().toLocalTime();
