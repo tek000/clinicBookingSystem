@@ -4,6 +4,8 @@ import clinic.com.example.clinic.domain.*;
 import clinic.com.example.clinic.infrastructure.dto.VisitDto;
 import clinic.com.example.clinic.infrastructure.entity.VisitStatus;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -17,10 +19,13 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.*;
 
+
 @Controller
 @RequestMapping("/visits")
 @RequiredArgsConstructor
 public class VisitsController {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(VisitsController.class);
 
     private final VisitFinder visitFinder;
     private final DoctorFinder doctorFinder;
@@ -31,6 +36,8 @@ public class VisitsController {
 
     @GetMapping("/get/doctor")
     ModelAndView getDoctorsVisits(@RequestParam Long doctorId) {
+        LOGGER.info("Trying to get doctors by id");
+
         ModelAndView modelAndView = new ModelAndView("visits.html");
         modelAndView.addObject("VisitDto", new VisitDto());
         modelAndView.addObject("visits", visitFinder.findByDoctorId(doctorId));
@@ -40,6 +47,7 @@ public class VisitsController {
 
     @GetMapping("/get/all")
     ModelAndView getAllVisits() {
+        LOGGER.info("Trying to get all doctors");
         ModelAndView modelAndView = new ModelAndView("visits.html");
         modelAndView.addObject("visits", visitFinder.findAll());
         modelAndView.addObject("VisitDto", new VisitDto());
@@ -63,7 +71,6 @@ public class VisitsController {
     ModelAndView createVisitView() {
         ModelAndView modelAndView = new ModelAndView("createVisit.html");
         modelAndView.addObject("doctors", doctorFinder.findAll());
-        modelAndView.addObject("patients", patientFinder.findAll());
         modelAndView.addObject("patients", patientFinder.findAll());
         modelAndView.addObject("visitStatuses", Arrays.asList(VisitStatus.values()));
 
@@ -123,6 +130,8 @@ public class VisitsController {
 
     @GetMapping("/edit")
     ModelAndView editVisit(@ModelAttribute VisitDto visitDto) {
+
+        LOGGER.info("Trying to edit doctors");
 
         visitDto = visitFinder.findById(visitDto.getId());
 

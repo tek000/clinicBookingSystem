@@ -4,11 +4,16 @@ import clinic.com.example.clinic.infrastructure.dto.DoctorDto;
 import clinic.com.example.clinic.infrastructure.entity.Doctor;
 import clinic.com.example.clinic.infrastructure.repository.DoctorRepository;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
 public class DoctorService {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(DoctorService.class);
 
     private final DoctorRepository doctorRepository;
 
@@ -28,4 +33,8 @@ public class DoctorService {
 
     }
 
+    @Scheduled (fixedDelay = 5000)
+    public void checkIfDoctorIsAvaliable() {
+        LOGGER.info("method checkIfDoctorIsAvaliable - invoked");
+    }
 }
